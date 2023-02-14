@@ -4,6 +4,7 @@ import SingleCard from './components/singleCard/SingleCard';
 interface CardImage {
   src: string;
   id: number;
+  matched: boolean
 }
 
 interface CardChoice {
@@ -12,12 +13,12 @@ interface CardChoice {
 }
 
 const cardImages: CardImage[] = [
-  { "src": "assets/img/helmet-1.png", id: 1 },
-  { "src": "assets/img/potion-1.png", id: 2 },
-  { "src": "assets/img/ring-1.png", id: 3 },
-  { "src": "assets/img/scroll-1.png", id: 4 },
-  { "src": "assets/img/shield-1.png", id: 5 },
-  { "src": "assets/img/sword-1.png", id: 6 },
+  { "src": "assets/img/helmet-1.png", id: 1, matched: false },
+  { "src": "assets/img/potion-1.png", id: 2, matched: false },
+  { "src": "assets/img/ring-1.png", id: 3, matched: false },
+  { "src": "assets/img/scroll-1.png", id: 4, matched: false },
+  { "src": "assets/img/shield-1.png", id: 5, matched: false },
+  { "src": "assets/img/sword-1.png", id: 6, matched: false },
 ]
 
 
@@ -40,14 +41,23 @@ function App() {
   useEffect(() => {
     if (choiceOne && choiceTwo) {
       if (choiceOne.src === choiceTwo.src) {
-        console.log('those cards match');
+        setCards(prevCards => {
+          return prevCards.map(card => {
+            if (card.src === choiceOne.src) {
+              return { ...card, matched: true }
+            } else {
+              return card;
+            }
+          })
+        })
         resetTurn()
       } else {
-        console.log("those cards do not match");
         resetTurn();
       }
     }
   }, [choiceOne, choiceTwo])
+
+  console.log(cards);
 
   const handleChoice = (card: CardChoice) => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
