@@ -7,10 +7,11 @@ interface CardProps {
     src: string,
     id: number
   },
-  handleChoice: (card: {src: string, id: number}) => void;
+  handleChoice: (card: {src: string, id: number}) => void,
+  flipped: boolean;
 }
 
-const SingleCard = ({ card, handleChoice }: CardProps) => {
+const SingleCard = ({ card, handleChoice, flipped }: CardProps) => {
 
   const handleClick = () => {
     handleChoice(card)
@@ -18,7 +19,7 @@ const SingleCard = ({ card, handleChoice }: CardProps) => {
 
   return (
     <div className="card" key={card.id}>
-      <div>
+      <div className={flipped ? 'flipped' : ''}>
         <img className="front" src={card.src} alt="card front" />
         <img className="back" src={coverImg} alt="cover" onClick={handleClick} />
       </div>
