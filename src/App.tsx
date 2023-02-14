@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.scss';
 import SingleCard from './components/singleCard/SingleCard';
 interface CardImage {
@@ -37,8 +37,26 @@ function App() {
     setTurns(0);
   }
 
+  useEffect(() => {
+    if (choiceOne && choiceTwo) {
+      if (choiceOne.src === choiceTwo.src) {
+        console.log('those cards match');
+        resetTurn()
+      } else {
+        console.log("those cards do not match");
+        resetTurn();
+      }
+    }
+  }, [choiceOne, choiceTwo])
+
   const handleChoice = (card: CardChoice) => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
+  }
+
+  const resetTurn = (): void => {
+    setChoiceOne(null)
+    setChoiceTwo(null)
+    setTurns(prevTurns => prevTurns + 1)
   }
   
   return (
