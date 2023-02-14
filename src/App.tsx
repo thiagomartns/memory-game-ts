@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.scss';
+import SingleCard from './components/singleCard/SingleCard';
 interface CardImage {
   src: string;
   id: number;
@@ -33,6 +34,12 @@ function App() {
     <div className="App">
       <h1>Magic Match</h1>
       <button onClick={shuffleCards}>New Game</button>
+
+      <div className="card-grid">
+        {cards.map((card) => (
+          <SingleCard card={card} />
+        ))}
+      </div>
     </div>
   )
 }
