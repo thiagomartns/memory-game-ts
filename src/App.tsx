@@ -6,12 +6,12 @@ interface CardImage {
 }
 
 const cardImages: CardImage[] = [
-  { "src": "/img/helmet-1.png", id: 1 },
-  { "src": "/img/potion-1.png", id: 2 },
-  { "src": "/img/ring-1.png", id: 3 },
-  { "src": "/img/scroll-1.png", id: 4 },
-  { "src": "/img/shield-1.png", id: 5 },
-  { "src": "/img/sword-1.png", id: 6 },
+  { "src": "assets/img/helmet-1.png", id: 1 },
+  { "src": "assets/img/potion-1.png", id: 2 },
+  { "src": "assets/img/ring-1.png", id: 3 },
+  { "src": "assets/img/scroll-1.png", id: 4 },
+  { "src": "assets/img/shield-1.png", id: 5 },
+  { "src": "assets/img/sword-1.png", id: 6 },
 ]
 
 
