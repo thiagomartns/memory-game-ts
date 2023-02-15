@@ -9,12 +9,15 @@ interface CardProps {
   },
   handleChoice: (card: {src: string, id: number}) => void,
   flipped: boolean;
+  disabled: boolean;
 }
 
-const SingleCard = ({ card, handleChoice, flipped }: CardProps) => {
+const SingleCard = ({ card, handleChoice, flipped, disabled }: CardProps) => {
 
   const handleClick = () => {
-    handleChoice(card)
+    if (!disabled) {
+      handleChoice(card)
+    }
   }
 
   return (
